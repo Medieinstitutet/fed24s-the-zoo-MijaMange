@@ -9,6 +9,7 @@ const AnimalList = () => {
   const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
   const { dispatch } = useAnimalContext();
   const [timeLeft, setTimeLeft] = useState<{ [id: string]: string }>({});
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleFeed = (id: string, time: string) => {
     dispatch({ type: 'FEED_ANIMAL', payload: { id, time } });
@@ -19,9 +20,9 @@ const AnimalList = () => {
 
   const getStatus = (lastFed: string) => {
     const hours = (Date.now() - new Date(lastFed).getTime()) / (1000 * 60 * 60);
-    if (hours >= 5) return { label: '🔴 Behöver mat NU', color: 'red', pulse: true };
-    if (hours >= 3) return { label: '🟠 Börjar bli hungrig', color: 'orange', warning: true };
-    return { label: '🟢 Mätt och nöjd', color: 'green', full: true };
+    if (hours >= 5) return { label: 'Behöver mat NU', color: 'red', pulse: true };
+    if (hours >= 3) return { label: 'Börjar bli hungrig', color: 'orange', warning: true };
+    return { label: 'Mätt och nöjd', color: 'green', full: true };
   };
 
   const isValidAnimal = (animal: Animal) => {
@@ -29,6 +30,13 @@ const AnimalList = () => {
   };
 
   const visibleAnimals = animals.filter(isValidAnimal);
+
+  const filteredAnimals = visibleAnimals.filter(animal => {
+    const status = getStatus(animal.lastFed).label.toLowerCase();
+    const name = animal.name.toLowerCase();
+    const search = searchTerm.toLowerCase();
+    return name.includes(search) || status.includes(search);
+  });
 
   useEffect(() => {
     const updateTimers = () => {
@@ -54,8 +62,26 @@ const AnimalList = () => {
 
   return (
     <section>
+      <input
+        type="text"
+        placeholder="Sök efter djur eller matstatus..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{
+          padding: '0.5rem 1rem',
+          fontSize: '1rem',
+          marginBottom: '1.5rem',
+          borderRadius: '8px',
+          border: '2px solid #ccc',
+          width: '100%',
+          maxWidth: '500px',
+          display: 'block',
+          marginInline: 'auto'
+        }}
+      />
+
       <div className="animal-grid">
-        {visibleAnimals.map(animal => {
+        {filteredAnimals.map(animal => {
           const status = getStatus(animal.lastFed);
           return (
             <div
@@ -77,7 +103,6 @@ const AnimalList = () => {
               </div>
               <div className="info">
                 <h3>{animal.name}</h3>
-                <p>{animal.shortDescription}</p>
               </div>
             </div>
           );

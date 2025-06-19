@@ -11,11 +11,12 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <NotFound />,
     children: [
-      { path: '', element: <Home /> },
+      { index: true, element: <Home /> },               // ← Ändrat här!
       { path: 'animals', element: <AnimalList /> },
       { path: 'animals/:id', element: <AnimalDetail /> },
       { path: '*', element: <NotFound /> }
     ]
+    
   }
 ]);
 
