@@ -1,3 +1,8 @@
+/* === GRUND === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 :root {
   font-family: 'Courier New', Courier, monospace;
   line-height: 1.5;
@@ -12,18 +17,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-}
-
 body {
   margin: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* === NAVBAR === */
@@ -37,6 +36,15 @@ body {
   text-align: center;
 }
 
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+
 .logo {
   height: 200px;
   width: auto;
@@ -46,32 +54,16 @@ body {
 .logo-sub {
   font-size: 0.9rem;
   color: #444;
-  margin-top: 0.3rem;
   font-family: 'Courier New', monospace;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  margin-top: 1rem;
-  padding: 0;
-}
-
-.nav-links a {
-  color: #0077cc;
-  text-decoration: none;
-  font-weight: 500;
-}
-.nav-links a:hover {
-  text-decoration: underline;
+  margin-top: 0.3rem;
 }
 
 /* === MAIN === */
 main {
   flex-grow: 1;
-  padding: 2rem;
-  width: 100%;
+  padding: 2rem 1rem;
+  margin: 0 auto;
+  max-width: 1200px;
   background-color: #242424;
   color: #f4f4f4;
 }
@@ -82,16 +74,12 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin: 2rem auto;
-  max-width: 1200px;
-  padding: 0 1rem; /* Minskar glappet */
-  justify-content: center; /* centrera griden */
+  justify-content: center;
 }
-
 
 /* === DJURKORT === */
 .animal-card {
   background-color: #e5f1e2;
-  color: #333;
   border: 4px dotted #333;
   border-radius: 8px;
   padding: 1rem;
@@ -110,12 +98,17 @@ main {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  filter: contrast(120%) brightness(95%);
   image-rendering: pixelated;
   border: 3px solid #222;
   border-radius: 6px;
   margin-bottom: 0.8rem;
   background-color: #fff;
+}
+
+.animal-status {
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
 }
 
 .animal-card .info {
@@ -135,15 +128,31 @@ main {
   content: '🧡 ';
 }
 
-/* === STATUSANIMATION === */
-.animal-card.hungry {
-  animation: pulseGlow 1.5s infinite;
+/* === TIMERS === */
+.timer {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.75rem;
+  color: limegreen;
+  background: black;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
-@keyframes pulseGlow {
-  0% { box-shadow: 0 0 5px 2px red; }
-  50% { box-shadow: 0 0 15px 4px red; }
-  100% { box-shadow: 0 0 5px 2px red; }
+/* === STATUSFÄRGER === */
+.animal-card.hungry {
+  box-shadow: 0 0 10px 4px red;
+}
+
+.animal-card.warning {
+  box-shadow: 0 0 10px 4px gold;
+}
+
+.animal-card.full {
+  border-color: limegreen;
+  box-shadow: 0 0 8px 2px limegreen;
 }
 
 /* === MODAL === */
@@ -223,18 +232,6 @@ main {
   cursor: pointer;
 }
 
-/* === LCD-TIMERS === */
-.timer {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.75rem;
-  color: limegreen;
-  background: black;
-  padding: 0.5rem;
-  border-radius: 6px;
-  display: inline-block;
-  margin-top: 0.5rem;
-}
-
 /* === ANIMATION === */
 @keyframes fadeIn {
   from {
@@ -247,13 +244,36 @@ main {
   }
 }
 
-/* === RUBRIKER === */
-.section-heading {
+/* === HEMSIDAN === */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  min-height: 60vh;
+  background-color: #fefaf3;
+  color: #333;
   text-align: center;
-  font-size: 3rem;
-  margin-top: 1.5rem;
-  margin-bottom: 2rem;
-  color: #ccc;
-  font-family: 'Press Start 2P', monospace;
-  letter-spacing: 1px;
+}
+
+.home-content {
+  max-width: 700px;
+  font-family: 'Courier New', monospace;
+  background: #fffef9;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 3px dashed #333;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.home-content h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2b2b2b;
+}
+
+.home-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
