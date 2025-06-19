@@ -4,8 +4,8 @@ const NotFound = () => {
   return (
     <section className="fade-in">
       <h2>404 - Sidan finns inte</h2>
-      <p>Vi hittade tyvärr inte sidan du letade efter.</p>
-      <Link to="/">Gå till startsidan</Link>
+      <p>Vi hittade tyvÃ¤rr inte sidan du letade efter.</p>
+      <Link to="/">GÃ¥ till startsidan</Link>
     </section>
   );
 };
