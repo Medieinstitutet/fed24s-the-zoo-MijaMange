@@ -1,6 +1,6 @@
-# Wildly – Ett virtuellt reservat
+# Wildly – Ett virtuellt zoo
 
-Wildly är en interaktiv, Tamagotchi-inspirerad webbapp där barn kan ta hand om utrotningshotade djur i ett tryggt, digitalt reservat. Projektet är en protest mot djurparker och ett pedagogiskt verktyg som uppmuntrar empati och medvetenhet.
+Wildly är en interaktiv, Tamagotchi-inspirerad webbapp där barn kan ta hand om utrotningshotade djur i ett tryggt, digitalt zoo. Projektet är en protest mot djurparker och ett pedagogiskt verktyg som uppmuntrar empati och medvetenhet för barn och unga.
 
 ## Syfte
 Att skapa engagemang för utrotningshotade arter – utan att hålla djur i fångenskap. Wildly ger barn ett alternativ till djurparker genom ett roligt, lärorikt och digitalt djurvårdsspel.
