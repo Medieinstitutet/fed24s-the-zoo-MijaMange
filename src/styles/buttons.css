@@ -1,0 +1,28 @@
+.cta-button {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  background-color: var(--color-cta-btn);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: var(--color-cta-btn-hover);
+  transform: scale(1.05);
+}
+
+.timer {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.75rem;
+  color: limegreen;
+  background: black;
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+}
