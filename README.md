@@ -19,10 +19,3 @@ Att skapa engagemang för utrotningshotade arter – utan att hålla djur i fån
 - Context API & Reducer för tillstånd
 - CSS med retro-stil och LCD-liknande font via Google Fonts
 
-## Starta lokalt
-
-```bash
-git clone https://github.com/ditt-användarnamn/wildly.git
-cd wildly
-npm install
-npm run dev
