@@ -1,4 +1,14 @@
-/* === GRUND === */
+@import 'variables.css';
+@import 'layout.css';
+@import 'navbar.css';
+@import 'animal-card.css';
+@import 'modal.css';
+@import 'home.css';
+@import 'animations.css';
+@import 'buttons.css';
+@import 'footer.css';
+
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -16,6 +26,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+
 
 body {
   background: url('/panda-bg.jpg') no-repeat center center fixed;
@@ -455,11 +468,11 @@ main {
 }
 
 .logo-big {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid #333;
+  border: 2px solid #333;
   background-color: #fff;
   margin-bottom: 0.5rem;
 }
@@ -468,7 +481,7 @@ main {
   margin: 0;
   font-size: 2rem;
   font-family: 'Courier New', monospace;
-  color: #222;
+  color: #ffffff;
 }
 
 .navbar-subtitle {
@@ -488,12 +501,13 @@ main {
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   font-weight: bold;
   font-family: 'Courier New', monospace;
   padding: 0.3rem 0.6rem;
   border-radius: 6px;
   transition: background-color 0.2s ease;
+  background-color: #786b52;
 }
 
 .nav-links a:hover {
@@ -516,4 +530,32 @@ main {
   max-height: 200px;
   margin-bottom: 1rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.animal-card.hungry {
+  box-shadow: 0 0 10px 4px red;
+  animation: pulseRed 1s infinite;
+}
+
+@keyframes pulseRed {
+  0% { box-shadow: 0 0 10px 4px red; }
+  50% { box-shadow: 0 0 15px 8px red; }
+  100% { box-shadow: 0 0 10px 4px red; }
+}
+.animal-card.hungry {
+  animation: pulseRed 1s infinite !important;
+}
+.nav-links button {
+  background: none;
+  border: none;
+  font-family: 'Courier New', monospace;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-links button:hover {
+  background-color: #eee1c6;
 }

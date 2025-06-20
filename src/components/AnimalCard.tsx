@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import AnimalDetailModal from './AnimalDetailModal';
 import type { Animal } from '../reducers/animalReducer';
+import './AnimalCard.css';
 
 interface Props {
   animal: Animal;
+  onFeed?: (id: string) => void;
 }
 
 const getStatus = (lastFed: string) => {
@@ -13,7 +15,7 @@ const getStatus = (lastFed: string) => {
   return { label: '✅ Mätt och nöjd', color: 'green' };
 };
 
-const AnimalCard = ({ animal }: Props) => {
+const AnimalCard = ({ animal, onFeed }: Props) => {
   const [showModal, setShowModal] = useState(false);
   const [canFeed, setCanFeed] = useState(false);
   const [warning, setWarning] = useState('');
@@ -32,28 +34,39 @@ const AnimalCard = ({ animal }: Props) => {
         setWarning('');
       }
     };
+
     updateFeedStatus();
     const interval = setInterval(updateFeedStatus, 60000);
     return () => clearInterval(interval);
   }, [animal.lastFed]);
 
   const handleFeed = () => {
-    const now = new Date().toISOString();
-    animal.lastFed = now; // OBS! Här ska du egentligen uppdatera via dispatch eller context!
+    if (onFeed) onFeed(animal.id);
     setCanFeed(false);
     setWarning('');
   };
 
+  const status = getStatus(animal.lastFed);
+
+  const cardClass =
+    status.color === 'red'
+      ? 'animal-card hungry'
+      : status.color === 'orange'
+      ? 'animal-card warning'
+      : 'animal-card full';
+
   return (
     <>
-      <div className="animal-card" onClick={() => setShowModal(true)}>
-        <img src={animal.imageUrl} alt={animal.name} onError={(e) => (e.currentTarget.src = '/vite.svg')} />
+      <div className={cardClass} onClick={() => setShowModal(true)}>
+        <img
+          src={animal.imageUrl}
+          alt={animal.name}
+          onError={(e) => (e.currentTarget.src = '/vite.svg')}
+        />
         <div className="info">
           <h3>{animal.name}</h3>
           <p>{animal.shortDescription}</p>
-          <span style={{ color: getStatus(animal.lastFed).color }}>
-            {getStatus(animal.lastFed).label}
-          </span>
+          <span className={`status ${status.color}`}>{status.label}</span>
         </div>
       </div>
 
