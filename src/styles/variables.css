@@ -1,0 +1,38 @@
+:root {
+  --font-main: 'Courier New', Courier, monospace;
+  --color-text: #333;
+  --color-bg: #fdfdfd;
+  --color-body-bg: #f5f2eb;
+  --color-navbar: #f9f1e5;
+  --color-navbar-hover: #eee1c6;
+  --color-animal-card: #e5f1e2;
+  --color-animal-hover: #d0ffd0;
+  --color-hungry: red;
+  --color-warning: gold;
+  --color-full: limegreen;
+  --color-modal-bg: #fffef2;
+  --color-modal-btn: #0077cc;
+  --color-modal-btn-hover: #005fa3;
+  --color-feature-hover: #f0fff0;
+  --color-highlight: #007744;
+  --color-cta-btn: #0077cc;
+  --color-cta-btn-hover: #005fa3;
+  --color-logo-border: #333;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-main);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

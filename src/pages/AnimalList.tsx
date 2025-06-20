@@ -1,8 +1,10 @@
 import { useAnimals } from '../hooks/useAnimals';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import type { Animal } from '../reducers/animalReducer';
 import AnimalDetailModal from '../components/AnimalDetailModal';
 import { useAnimalContext } from '../context/AnimalContext';
+
+type FilterStatus = 'all' | 'hungry' | 'full';
 
 const AnimalList = () => {
   const { animals, loading, error } = useAnimals();
@@ -10,6 +12,7 @@ const AnimalList = () => {
   const { dispatch } = useAnimalContext();
   const [timeLeft, setTimeLeft] = useState<{ [id: string]: string }>({});
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState<FilterStatus>('all');
 
   const handleFeed = (id: string, time: string) => {
     dispatch({ type: 'FEED_ANIMAL', payload: { id, time } });
@@ -29,14 +32,26 @@ const AnimalList = () => {
     return animal.name !== 'Kontakt' && animal.imageUrl && !animal.imageUrl.includes('vite.svg');
   };
 
-  const visibleAnimals = animals.filter(isValidAnimal);
+  // Memoisera filtered array för att undvika onödiga re-render och oändliga loops
+  const visibleAnimals = useMemo(() => animals.filter(isValidAnimal), [animals]);
 
-  const filteredAnimals = visibleAnimals.filter(animal => {
-    const status = getStatus(animal.lastFed).label.toLowerCase();
-    const name = animal.name.toLowerCase();
-    const search = searchTerm.toLowerCase();
-    return name.includes(search) || status.includes(search);
-  });
+  const filteredAnimals = useMemo(() => {
+    return visibleAnimals.filter(animal => {
+      const status = getStatus(animal.lastFed).label.toLowerCase();
+      const name = animal.name.toLowerCase();
+      const search = searchTerm.toLowerCase();
+
+      const matchesSearch = name.includes(search) || status.includes(search);
+
+      if (filterStatus === 'hungry') {
+        return matchesSearch && status === 'behöver mat nu';
+      } else if (filterStatus === 'full') {
+        return matchesSearch && status === 'mätt och nöjd';
+      }
+
+      return matchesSearch; // all
+    });
+  }, [visibleAnimals, searchTerm, filterStatus]);
 
   useEffect(() => {
     const updateTimers = () => {
@@ -62,6 +77,51 @@ const AnimalList = () => {
 
   return (
     <section>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
+        <button
+          onClick={() => setFilterStatus('all')}
+          style={{
+            backgroundColor: filterStatus === 'all' ? '#4a90e2' : '#ddd',
+            color: filterStatus === 'all' ? 'white' : '#333',
+            border: 'none',
+            padding: '0.5rem 1rem',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+        >
+          Visa alla djur
+        </button>
+        <button
+          onClick={() => setFilterStatus('hungry')}
+          style={{
+            backgroundColor: filterStatus === 'hungry' ? '#cc4444' : '#f9d6d6',
+            color: filterStatus === 'hungry' ? 'white' : '#cc4444',
+            border: 'none',
+            padding: '0.5rem 1rem',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+        >
+          Visa djur som behöver mat NU
+        </button>
+        <button
+          onClick={() => setFilterStatus('full')}
+          style={{
+            backgroundColor: filterStatus === 'full' ? '#44aa44' : '#d6f9d6',
+            color: filterStatus === 'full' ? 'white' : '#44aa44',
+            border: 'none',
+            padding: '0.5rem 1rem',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+        >
+          Visa mätta och nöjda djur
+        </button>
+      </div>
+
       <input
         type="text"
         placeholder="Sök efter djur eller matstatus..."

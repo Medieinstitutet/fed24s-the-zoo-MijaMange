@@ -1,0 +1,10 @@
+.footer {
+  background-color: var(--color-navbar);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 3rem;
+  border-top: 2px dashed var(--color-text);
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
