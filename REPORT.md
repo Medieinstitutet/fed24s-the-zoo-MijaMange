@@ -27,8 +27,8 @@ Att skapa engagemang för utrotningshotade arter – utan att hålla djur i fån
 ## 🔍 ESLint-varningar:
 
 
-## 🏆 **Betyg: G**
-📌 **Motivering:** Koden uppfyller många av kraven, är välstrukturerad och använder lämplig teknik. Dock saknas robust felhantering och grundlig dokumentation.
+## 🏆 **Betyg: IG**
+📌 **Motivering:** Tekniskt fel vid AI-analys. Kontrollera manuellt.
 
 💡 **Förbättringsförslag:**  
-Inför mer utförlig dokumentation och bättre felhantering för att främja förståelse och stabilitet.
+Automatisk rättning med AI-assistant misslyckades. Vänligen kontrollera koden manuellt.
