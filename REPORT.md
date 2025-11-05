@@ -28,7 +28,7 @@ Att skapa engagemang för utrotningshotade arter – utan att hålla djur i fån
 
 
 ## 🏆 **Betyg: G**
-📌 **Motivering:** Koden uppfyller samtliga kravbeskrivningar. Applikationen fungerar enligt specifikationen och använder de specificerade teknologierna som React med TypeScript, React Router v6, Context API & Reducer och CSS med en retro-stil. Funktionen med djurkorten, matningsstatus och modals fungerar enligt angivna krav.
+📌 **Motivering:** Koden uppfyller många av kraven, är välstrukturerad och använder lämplig teknik. Dock saknas robust felhantering och grundlig dokumentation.
 
 💡 **Förbättringsförslag:**  
-Koden kan förbättras vad gäller struktur och återanvändning. Till exempel, flera delar av koden för att hantera djurens matningsstatus är duplicerade mellan olika komponenter och kan isoleras till en hjälpfunktion. För att förbättra prestandan och undvika onödiga omrenderingar kan React.memo användas på komponenter där hela referenser används som prop. Dessutom skulle applikationen kunna dra nytta av ett globalt felhanteringssystem för att bättre hantera och visa användbara felmeddelanden. Att inkludera mer enhetstester för att säkra funktionaliteten kan också vara ett område för förbättring.
+Inför mer utförlig dokumentation och bättre felhantering för att främja förståelse och stabilitet.
