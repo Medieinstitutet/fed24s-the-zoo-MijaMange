@@ -69,11 +69,7 @@ Ha roligt, skratta och lär er massor!
 
 
 ## 🏆 **Betyg: VG**
-📌 **Motivering:** Projektet 'The Zoo' uppfyller alla krav för både G och VG. Koden är exceptionellt välstrukturerad med en tydlig komponentindelning och följer etablerade konventioner för frontend-utveckling. Funktionaliteten är korrekt implementerad med användning av router, context, reducers och hantering av bildfel. Användargränssnittet är intuitivt och inkluderar subtila animeringar. Säkerhet och prestanda är också beaktade.
+📌 **Motivering:** Projektet uppfyller alla krav för både G och VG. Koden är exceptionellt väl implementerad med användning av moderna frontend-tekniker såsom context API, reducers och custom hooks. Den hanterar trasiga bildlänkar korrekt och implementerar subtila animeringar som förbättrar användarupplevelsen. Kodstrukturen är logisk och följer etablerade konventioner, vilket gör den lättläst och underhållbar.
 
 💡 **Förbättringsförslag:**  
-Även om projektet är mycket väl genomfört, finns det några mindre förbättringsområden: 
-1. **Kodkommentarer och Dokumentation:** Öka antalet kommentarer för att ytterligare förbättra läsbarheten, speciellt i mer komplexa delar av koden. 
-2. **Error Handling:** Utöka error handling för API-anrop för att hantera fler potentiella fel. 
-3. **Användning av CSS-tekniker:** Utforska fler avancerade CSS-tekniker eller bibliotek för att ytterligare förbättra det visuella intrycket. 
-4. **Prestandaoptimering:** Granska och optimera renderingslogiken för att säkerställa att komponenter inte renderas om i onödan.
+För att ytterligare förbättra projektet kan koden göras mer DRY genom att extrahera upprepade logikdelar i komponenterna till egna funktioner eller hooks. Dessutom kan fler kommentarer läggas till för att förbättra kodens läsbarhet och underlätta för framtida utvecklare. Att tillhandahålla konkreta exempel på var dessa förbättringar kan göras skulle ge ännu mer vägledning.
